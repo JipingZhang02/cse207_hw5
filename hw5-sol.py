@@ -327,6 +327,7 @@ m = (m_mul_y_to_k_mod_p*mod_inverse_of_prime(fast_pow_with_mod(y,k,p),p))%p
 aeskey = int_to_binary(m)
 cipher = AES.new(aeskey, AES.MODE_CBC, iv)
 origin_msg = cipher.decrypt(enc_result)
+origin_msg = origin_msg[:-int(origin_msg[-1])]
 
 with open("./hw5.pdf","wb+") as fout:
     fout.write(origin_msg)
